@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Display Page</title>
+    <style>
+        #textDisplay {
+            margin: 0px 10px 0px 10px;
+            border: 1px solid black;
+            padding: 5px 10px 5px 10px;
+            font-size: 24px;
+            color: grey;
+        }
+        #black {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <h2>User Input:</h2>
+    <button onclick="startFunction()">Start</button><br><br>
+    <p id="textDisplay">{{ user_input.text }}</p>
+
+    <script>
+        function startFunction() {
+            var text = document.getElementById('textDisplay').innerText;
+            var words = text.split(' ');
+            var speed = {{ user_input.speed }};
+            var i = 0;
+            var interval = setInterval(function () {
+                if (i < words.length) {
+                    var formattedText = '';
+                    for (var j = 0; j < words.length; j++) {
+                        if (j === i) {
+                            formattedText += '<span id="black"">' + words[j] + '</span> ';
+                        } else {
+                            formattedText += words[j] + ' ';
+                        }
+                    }
+                    document.getElementById('textDisplay').innerHTML = formattedText;
+                    i++;
+                } else {
+                    clearInterval(interval);
+                }
+            }, 60000 / speed);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Input Page</title>
+</head>
+<body>
+    <form action="{% url 'submit' %}" method="post">
+        {% csrf_token %}
+        <label for="text">Text:</label><br>
+        <input type="text" id="text" name="text"><br>
+        <label for="speed">Speed (words per min):</label><br>
+        <input type="number" id="speed" name="speed"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
